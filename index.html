@@ -191,7 +191,8 @@ section{position:relative;z-index:2}
    ============================================================ */
 .hero{
   position:relative;min-height:100vh;min-height:100svh;
-  display:flex;align-items:flex-end;overflow:hidden;isolation:isolate;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  overflow:hidden;isolation:isolate;
 }
 .hero__bg{position:absolute;inset:0;z-index:-2}
 .hero__bg figure{position:absolute;inset:0;opacity:0;animation:heroFade 35s var(--ease) infinite}
@@ -209,7 +210,7 @@ section{position:relative;z-index:2}
     linear-gradient(180deg,rgba(20,17,13,.62) 0%,rgba(20,17,13,.18) 32%,rgba(20,17,13,.5) 62%,rgba(20,17,13,.86) 100%),
     radial-gradient(120% 80% at 20% 90%, rgba(166,133,92,.28) 0%, rgba(166,133,92,0) 55%);
 }
-.hero__inner{position:relative;z-index:2;width:100%;padding-top:clamp(8rem,18vw,11rem);padding-bottom:clamp(3.5rem,9vw,7rem)}
+.hero__inner{position:relative;z-index:2;width:100%}
 .hero .eyebrow{color:#E8C9A0}
 .hero__title{font-size:clamp(2.9rem,9vw,6rem);font-weight:300;letter-spacing:-.02em;color:#FAF8F4;text-shadow:0 2px 40px rgba(0,0,0,.4)}
 .hero__title em{font-style:italic;font-weight:400;color:#E8C9A0}
@@ -414,18 +415,11 @@ a:focus-visible,button:focus-visible{
     <figure><img src="assets/img/fb344fac-9ece-41b0-a57d-19cb52d1af59.jpg" alt="" role="presentation"></figure>
   </div>
   <div class="wrap hero__inner">
-    <p class="eyebrow" data-hero-line>Studio projektowania wnętrz</p>
     <h1 class="hero__title">
       <span class="line-mask"><span data-hero-line>Wnętrza</span></span>
       <span class="line-mask"><span data-hero-line>projektowane</span></span>
       <span class="line-mask"><span data-hero-line><em>pod Ciebie</em></span></span>
     </h1>
-    <p class="hero__lead" data-hero-line>Mieszkania, domy i biura. Funkcjonalność i estetyka w jednym.</p>
-    <div class="hero__meta" data-hero-line>
-      <span>Mieszkania</span>
-      <span>Domy</span>
-      <span>Biura</span>
-    </div>
   </div>
   <a href="#o-nas" class="hero__scroll" aria-label="Przewiń w dół">Przewiń<i></i></a>
 </header>
