@@ -299,7 +299,7 @@ section{position:relative;z-index:2}
 /* ============================================================
    KONTAKT
    ============================================================ */
-.contact__grid{display:grid;grid-template-columns:1fr;gap:clamp(2rem,6vw,4rem);align-items:end}
+.contact__grid{display:grid;grid-template-columns:1fr;gap:clamp(2.4rem,6vw,4.5rem);align-items:start}
 .contact h2{font-size:clamp(2.4rem,8vw,4.6rem);font-weight:300;letter-spacing:-.02em}
 .contact h2 em{font-style:italic;color:var(--akcent)}
 .contact__list{display:flex;flex-direction:column;gap:1.5rem}
@@ -309,6 +309,41 @@ section{position:relative;z-index:2}
 .contact__item a.val{position:relative;width:fit-content}
 .contact__item a.val::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--akcent);transition:width .45s var(--ease)}
 .contact__item a.val:hover::after,.contact__item a.val:focus-visible::after{width:100%}
+.contact__intro{margin-top:1.4rem;max-width:38ch;color:var(--tekst-2);font-size:clamp(1rem,2.2vw,1.12rem)}
+.contact__details{margin-top:2.6rem}
+
+.form{display:flex;flex-direction:column;gap:1.3rem}
+.field{position:relative;display:flex;flex-direction:column}
+.field label{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--tekst-2);margin-bottom:.55rem}
+.field input,.field textarea{
+  font:inherit;font-weight:300;color:var(--tekst);
+  background:rgba(255,255,255,.55);
+  border:1px solid var(--linia);border-radius:var(--r);
+  padding:.95rem 1.05rem;width:100%;
+  transition:border-color .4s var(--ease),box-shadow .4s var(--ease),background .4s var(--ease);
+}
+.field textarea{resize:vertical;min-height:130px;line-height:1.6}
+.field input::placeholder,.field textarea::placeholder{color:var(--tekst-2);opacity:.6}
+.field input:hover,.field textarea:hover{border-color:rgba(166,133,92,.5)}
+.field input:focus,.field textarea:focus{
+  outline:none;border-color:var(--akcent);background:#fff;
+  box-shadow:0 0 0 4px rgba(166,133,92,.12);
+}
+.form__row{display:grid;grid-template-columns:1fr;gap:1.3rem}
+.btn{
+  align-self:flex-start;display:inline-flex;align-items:center;gap:.7rem;
+  font-family:'Jost',sans-serif;font-weight:500;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;
+  color:#FAF8F4;background:var(--tekst);
+  padding:1rem 2rem;border-radius:999px;
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease),background .45s var(--ease);
+  box-shadow:var(--shadow-card);
+}
+.btn svg{width:16px;height:16px;transition:transform .45s var(--ease)}
+.btn:hover{transform:translateY(-3px);background:var(--akcent);box-shadow:0 26px 50px -24px rgba(166,133,92,.6)}
+.btn:hover svg{transform:translateX(4px)}
+.btn:active{transform:translateY(-1px)}
+.form__note{font-size:.78rem;color:var(--tekst-2);letter-spacing:.02em}
+.form__status{font-size:.86rem;color:var(--akcent);min-height:1.2em;font-weight:400}
 
 /* ============================================================
    STOPKA
@@ -356,6 +391,7 @@ a:focus-visible,button:focus-visible{
 @media(min-width:560px){
   .gallery{grid-template-columns:repeat(2,1fr)}
   .services{grid-template-columns:repeat(3,1fr)}
+  .form__row{grid-template-columns:1fr 1fr}
 }
 @media(min-width:880px){
   .nav__links{display:flex}
@@ -509,25 +545,52 @@ a:focus-visible,button:focus-visible{
       <div class="reveal">
         <p class="eyebrow">04</p>
         <h2 class="contact-h">Porozmawiajmy <em>o Twoim wnętrzu</em></h2>
-      </div>
-      <div class="contact__list reveal">
-        <div class="contact__item">
-          <span class="lab">Napisz</span>
-          <a class="val" href="mailto:projekt@mwbalticdesign.com">projekt@mwbalticdesign.com</a>
-        </div>
-        <div class="contact__item">
-          <span class="lab">Instagram</span>
-          <a class="val" href="https://instagram.com/mwbaltic_design" target="_blank" rel="noopener">@mwbaltic_design</a>
-        </div>
-        <div class="contact__item">
-          <span class="lab">Telefon</span>
-          <span class="val">{{TELEFON}}</span>
-        </div>
-        <div class="contact__item">
-          <span class="lab">Adres</span>
-          <span class="val">{{ADRES}}</span>
+        <p class="contact__intro">Opowiedz o swoim projekcie — odpowiemy z propozycją kolejnych kroków w ciągu 24 godzin.</p>
+        <div class="contact__list contact__details">
+          <div class="contact__item">
+            <span class="lab">Napisz</span>
+            <a class="val" href="mailto:projekt@mwbalticdesign.com">projekt@mwbalticdesign.com</a>
+          </div>
+          <div class="contact__item">
+            <span class="lab">Instagram</span>
+            <a class="val" href="https://instagram.com/mwbaltic_design" target="_blank" rel="noopener">@mwbaltic_design</a>
+          </div>
         </div>
       </div>
+      <form class="form reveal" id="contactForm" action="https://formsubmit.co/projekt@mwbalticdesign.com" method="POST">
+        <input type="hidden" name="_subject" value="Nowe zapytanie ze strony MW Baltic Design">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <div class="form__row">
+          <div class="field">
+            <label for="cf-name">Imię i nazwisko</label>
+            <input id="cf-name" name="name" type="text" placeholder="Jan Kowalski" required>
+          </div>
+          <div class="field">
+            <label for="cf-email">E-mail</label>
+            <input id="cf-email" name="email" type="email" placeholder="jan@example.com" required>
+          </div>
+        </div>
+        <div class="form__row">
+          <div class="field">
+            <label for="cf-phone">Telefon <span style="text-transform:none;letter-spacing:0">(opcjonalnie)</span></label>
+            <input id="cf-phone" name="phone" type="tel" placeholder="+48 600 000 000">
+          </div>
+          <div class="field">
+            <label for="cf-type">Rodzaj wnętrza</label>
+            <input id="cf-type" name="type" type="text" placeholder="Mieszkanie / dom / biuro">
+          </div>
+        </div>
+        <div class="field">
+          <label for="cf-message">Wiadomość</label>
+          <textarea id="cf-message" name="message" placeholder="Metraż, lokalizacja, oczekiwania, termin…" required></textarea>
+        </div>
+        <button class="btn" type="submit">Wyślij zapytanie
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+        </button>
+        <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
+        <p class="form__note">Wysyłając formularz akceptujesz kontakt zwrotny w sprawie Twojego zapytania.</p>
+      </form>
     </div>
   </div>
 </section>
@@ -568,6 +631,24 @@ a:focus-visible,button:focus-visible{
   burger.addEventListener('click', function(){ toggleMenu(); });
   menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ toggleMenu(false); }); });
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape') toggleMenu(false); });
+
+  /* ---------- formularz kontaktowy ---------- */
+  var form = document.getElementById('contactForm');
+  if(form){
+    var status = document.getElementById('formStatus');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var btn = form.querySelector('.btn');
+      status.style.color = 'var(--akcent)';
+      status.textContent = 'Wysyłanie…';
+      btn.disabled = true;
+      fetch(form.action, { method:'POST', body:new FormData(form), headers:{Accept:'application/json'} })
+        .then(function(r){ return r.ok ? r.json().catch(function(){return {};}) : Promise.reject(r); })
+        .then(function(){ status.textContent = 'Dziękujemy! Odezwiemy się w ciągu 24 godzin.'; form.reset(); })
+        .catch(function(){ status.style.color = '#b4503c'; status.textContent = 'Nie udało się wysłać. Napisz na projekt@mwbalticdesign.com.'; })
+        .finally(function(){ btn.disabled = false; });
+    });
+  }
 
   /* ---------- kurczenie nawigacji ---------- */
   var nav = document.getElementById('nav');
